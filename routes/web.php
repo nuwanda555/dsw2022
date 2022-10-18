@@ -18,10 +18,14 @@ Route::get('/', function () {
     return "<h1>Que bonito es Jonay el bueno</h1>";
 });
 
+
+
 Route::get('/saludar/{veces}', [ClienteController::class, 'saludar']);
 Route::get('/despedida/{veces}', [ClienteController::class, 'despedida']);
 
 
 
-Route::get('/clientes', [ClienteController::class, 'index']);
-Route::get('/borrar/{id}', [ClienteController::class, 'borrar']);
+Route::get('/clientes', [ClienteController::class, 'index'])->name('clientes.index');
+Route::get('/clientes/borrar/{id}', [ClienteController::class, 'borrar'])->name("clientes.borrar");
+Route::view('/clientes/create', 'clientes.create')->name("clientes.create");
+Route::post('/clientes/store', [ClienteController::class, 'store'])->name("clientes.store");

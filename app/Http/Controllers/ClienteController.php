@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cliente;
+use Illuminate\Http\Request;
 
 class ClienteController extends Controller
 {
@@ -19,6 +20,15 @@ class ClienteController extends Controller
         return redirect("/clientes");
     }
 
+    public function store(Request $request){
+
+        $datos=$request->all();
+
+        
+        Cliente::create($datos);
+
+        return redirect("/clientes");
+    }
 
 
 }
