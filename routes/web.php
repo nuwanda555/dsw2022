@@ -15,7 +15,7 @@ use App\Http\Controllers\ClienteController;
 */
 
 Route::get('/', function () {
-    return "<h1>Que bonito es Laravel 9</h1>";
+    return "<h1>Que bonito es Jonay el bueno</h1>";
 });
 
 Route::get('/saludar/{veces}', [ClienteController::class, 'saludar']);
