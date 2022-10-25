@@ -8,29 +8,54 @@
                 <a href="{{route('clientes.create')}}" class="btn btn-success mb-3">Crear cliente</a>
             </div>
         </div>
-        <table class="table table-striped table-bordered">
-            <tr>
-                <th>Codigo</th>
-                <th>Empresa</th>
-                <th>Contacto</th>
-                <th>Cargo</th>
-                <th>Borrar</th>
-            </tr>
-            @foreach ($clientes as $cliente)
-            <tr data-id='{{$cliente->id}}'>
-                <td>{{$cliente->id}}</td>
-                <td>{{$cliente->empresa}}</td>
-                <td>{{$cliente->contacto}}</td>
-                <td>{{$cliente->cargo_contacto}}</td>
-                <td><button class="btn btn-danger btn_borrar">Borrar</button></td>
-            </tr>
-            @endforeach
+        <table id="tabla" class="table table-striped table-bordered">
+           <thead>
+                <tr>
+                    <th>Codigo</th>
+                    <th>Empresa</th>
+                    <th>Contacto</th>
+                    <th>Cargo</th>
+                    <th>Borrar</th>
+                    <th>Editar</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($clientes as $cliente)
+                <tr data-id='{{$cliente->id}}'>
+                    <td>{{$cliente->id}}</td>
+                    <td>{{$cliente->empresa}}</td>
+                    <td>{{$cliente->contacto}}</td>
+                    <td>{{$cliente->cargo_contacto}}</td>
+                    <td><button class="btn btn-danger btn_borrar">Borrar</button></td>
+                    <td><a href="{{url('/clientes')}}/{{$cliente->id}}/edit" class="btn btn-warning btn_editar">Editar</a></td>
+                </tr>
+                @endforeach
+            </tbody>
         </table>
     </div>
 
 <script>
     $(document).ready(function(){
-        $(".btn_borrar").click(function(e){
+
+        $('#tabla').DataTable({
+            "language": {
+                "lengthMenu": "Mostrar _MENU_ registros por página",
+                "zeroRecords": "Nada encontrado - lo siento",
+                "info": "Mostrando página _PAGE_ de _PAGES_",
+                "infoEmpty": "No hay registros disponibles",
+                "infoFiltered": "(filtrado de _MAX_ registros totales)",
+                "search": "Buscar:",
+                "paginate": {
+                    "first":      "Primero",
+                    "last":       "Último",
+                    "next":       "Siguiente",
+                    "previous":   "Anterior"
+                },
+            }
+        });
+
+
+        $("#tabla").on("click",".btn_borrar",function(e){
             e.preventDefault();
            
             //confirmar con sweetalert
