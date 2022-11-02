@@ -29,5 +29,8 @@ Route::view('/clientes/create', 'clientes.create')->name("clientes.create");
 Route::post('/clientes/store', [ClienteController::class, 'store'])->name("clientes.store");
 Route::get("/clientes/{id}/edit", [ClienteController::class, 'edit'])->name("clientes.edit");
 Route::post("/clientes/{id}", [ClienteController::class, 'update'])->name("clientes.update");
+Route::get("/listado_pdf", [ClienteController::class, 'listadoPdf'])->name("clientes.listado_pdf");
+
+
 
 Route::resource("proveedores", ProveedorController::class);

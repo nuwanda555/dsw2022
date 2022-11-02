@@ -6,6 +6,8 @@
         <div class="row">
             <div class="col-12">
                 <a href="{{route('clientes.create')}}" class="btn btn-success mb-3">Crear cliente</a>
+                <a target='_blank' href="{{route('clientes.listado_pdf')}}" class="btn btn-warning mb-3">Listado pdf</a>
+
             </div>
         </div>
         <table id="tabla" class="table table-striped table-bordered">

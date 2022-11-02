@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cliente;
 use Illuminate\Http\Request;
 
+
 class ClienteController extends Controller
 {
     public function index()
@@ -27,6 +28,13 @@ class ClienteController extends Controller
         Cliente::create($datos);
 
         return redirect("/clientes");
+    }
+
+    public function listadoPdf(){
+        $clientes = Cliente::all();
+        $pdf = \PDF::loadView("clientes.listado_pdf",compact("clientes"));
+
+        return $pdf->stream('listado.pdf');
     }
 
     public function edit($id){
