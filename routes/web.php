@@ -23,9 +23,9 @@ Route::get('/saludar/{veces}', [ClienteController::class, 'saludar']);
 Route::get('/despedida/{veces}', [ClienteController::class, 'despedida']);
 
 
-Route::get('/clientes', [ClienteController::class, 'index'])->name('clientes.index');
+Route::get('/clientes', [ClienteController::class, 'index'])->name('clientes.index')->middleware('auth');
 Route::delete('/clientes/{id}', [ClienteController::class, 'borrar'])->name("clientes.borrar");
-Route::view('/clientes/create', 'clientes.create')->name("clientes.create");
+Route::view('/clientes/create', 'clientes.create')->name("clientes.create")->middleware('auth');
 Route::post('/clientes/store', [ClienteController::class, 'store'])->name("clientes.store");
 Route::get("/clientes/{id}/edit", [ClienteController::class, 'edit'])->name("clientes.edit");
 Route::post("/clientes/{id}", [ClienteController::class, 'update'])->name("clientes.update");
@@ -34,3 +34,13 @@ Route::get("/listado_pdf", [ClienteController::class, 'listadoPdf'])->name("clie
 
 
 Route::resource("proveedores", ProveedorController::class);
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});

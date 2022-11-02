@@ -8,6 +8,16 @@ use Illuminate\Http\Request;
 
 class ClienteController extends Controller
 {
+    //aplicar el middleware a todos los metodos
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
+
+
+
     public function index()
     {
         $clientes = Cliente::all(); 

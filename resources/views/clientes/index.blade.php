@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app2')
 
 @section("contenido")
     <h1>Esto es un listado de clientes buenos</h1>
