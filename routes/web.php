@@ -15,15 +15,14 @@ use App\Http\Controllers\ProveedorController;
 |
 */
 
-Route::get('/', [ClienteController::class, 'index']);
+Route::get('/', [ClienteController::class, 'index'])->middleware('gmail');;
 
 
 
 Route::get('/saludar/{veces}', [ClienteController::class, 'saludar']);
 Route::get('/despedida/{veces}', [ClienteController::class, 'despedida']);
 
-
-Route::get('/clientes', [ClienteController::class, 'index'])->name('clientes.index')->middleware('auth');
+Route::get('/clientes', [ClienteController::class, 'index'])->name('clientes.index');
 Route::delete('/clientes/{id}', [ClienteController::class, 'borrar'])->name("clientes.borrar");
 Route::view('/clientes/create', 'clientes.create')->name("clientes.create")->middleware('auth');
 Route::post('/clientes/store', [ClienteController::class, 'store'])->name("clientes.store");
@@ -34,6 +33,9 @@ Route::get("/listado_pdf", [ClienteController::class, 'listadoPdf'])->name("clie
 
 
 Route::resource("proveedores", ProveedorController::class);
+
+
+
 
 Route::middleware([
     'auth:sanctum',

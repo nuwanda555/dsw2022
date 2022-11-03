@@ -46,6 +46,7 @@
     <body>
         <div class="titulo">
             <h1>Aplicación de pruebas2</h1>
+            <h4>{{Auth::user()->name}} - {{Auth::user()->email}}</h4>
         </div>
         <div class="panel">
             @yield('contenido')
